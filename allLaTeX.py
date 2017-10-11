@@ -1,7 +1,6 @@
 """Copyright: Arthur Milchior arthur@milchior.fr
 License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
 Feel free to contribute to this code on https://github.com/Arthur-Milchior/anki-latex-header-footer
-Add-on number 1863928230
 
 
 Change the LaTeX of every note type.
@@ -22,13 +21,12 @@ import aqt
 from aqt import mw
 from aqt.qt import *
 from aqt.utils import getText, tooltip, askUserDialog
-import aqt
+
 
 def test(s):
     return s and isinstance(s, basestring)
 
 def changeLaTeX(latexPre=None, latexPost = None):
-    latexPre  = latexPre 
     models = list(mw.col.models.models.values())
     if not test(latexPre):
         if  'latexPre' in mw.col.conf :
@@ -39,13 +37,12 @@ def changeLaTeX(latexPre=None, latexPost = None):
             latexPre = model['latexPre']
 
     (latexPre,ret)=getText("LaTeX header",default=latexPre)
-    if test(latexPre):        
+    if test(latexPre) and ret:
         mw.col.conf['latexPre']= latexPre
         for model in models:
             model['latexPre'] = latexPre
 
 
-    latexPost  = latexPost 
     models = list(mw.col.models.models.values())
     if not test(latexPost):
         if  'latexPost' in mw.col.conf :
@@ -55,14 +52,14 @@ def changeLaTeX(latexPre=None, latexPost = None):
         if 'latexPost' in model:
             latexPost = model['latexPost']
 
-    (latexPost,ret)=getText("LaTeX footer",default=latexPost)
-    if test(latexPost):        
+    (latexPost,ret_)=getText("LaTeX footer",default=latexPost)
+    if test(latexPost) and ret_:
         mw.col.conf['latexPost']= latexPost
         for model in models:
             model['latexPost'] = latexPost
 
-
-    mw.col.flush()
+    if ret or ret_:
+        mw.col.flush()
 
 def launch():
     changeLaTeX ()
