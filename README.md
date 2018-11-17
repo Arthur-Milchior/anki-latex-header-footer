@@ -3,16 +3,22 @@ License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
 Feel free to contribute to this code on https://github.com/Arthur-Milchior/anki-latex-header-footer
 Add-on number 1863928230
 
+This add-on allow to change the latex prefix and suffix only once,
+using the add-on manager.
 
-Change the LaTeX of every note type.
+Note that if you change prefix/suffix directly in a note type's option,
+this modification will be lost the first time you use this add-on again.
 
-In my usage, there is no reason to have distinct header, and its a
-pain to edit every footer when I realize I do need a package. Hence this simple addon.
-I'm too lazy to figure out how to have a multiline text editor, so here it is.
+#Rationale
+After two years of using anki, mostly for mathematics, it never
+occured that the latex configuration I use depends on the note type.
 
-To use:
+#Configuration
+Use the add-on manager, and configure "prefix" and "suffix" to choose
+for latex prefix. (Don't edit directly meta.json, the add-on would not
+detect it)
 
-1) Open the main browser
-2) Select "change LaTeX" 
-3) Enter the LaTeX header
-4) Enter the LaTeX footer
+#Internal
+Version 1 used two global configurations "latexPre" and
+"latexPost". If they are found, they are deleted when anki start, and
+replaced by configurations. 
