@@ -1,1 +1,1 @@
-zip latex.zip __init__.py config.json config.md latex.py
+zip  latex.zip *.py config.json config.md latex.zip
