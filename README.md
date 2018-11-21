@@ -23,6 +23,15 @@ replaced by configurations.
 Using add-on [112201952](https://ankiweb.net/shared/info/112201952)
 you can have new-line in your configuration. It would be more readable !
 
+## Version 2.0
+Anki 2.0 does not have configuration manager. Instead, to use it:
+1. In main browser
+2. Select "change LaTeX" 
+3. Enter the LaTeX header
+4. Enter the LaTeX footer
+
+
+
 ## Links, licence and credits
 
 Key         |Value
