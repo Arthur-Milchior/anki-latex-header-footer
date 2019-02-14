@@ -1,1 +1,2 @@
-zip  latex.zip *.py config.json config.md latex.zip
+rm latexAll.zip
+zip -R latexAll.zip *py README.md LICENSE config* zipping ankiweb  --exclude \*~

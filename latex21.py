@@ -12,7 +12,7 @@ I'm too lazy to figure out how to have a multiline text editor, so here it is.
 To use:
 
 1) Open the main browser
-2) Select "change LaTeX" 
+2) Select "change LaTeX"
 3) Enter the LaTeX header
 4) Enter the LaTeX footer
 
@@ -38,15 +38,6 @@ def changeLaTeX(prefix=None, suffix = None):
     mw.addonManager.writeConfig(__name__,userOption)
     mw.col.flush()
 
-def updateV1toV2():
-    for conf, option in [("latexPre","prefix"),("latexPost","suffix")]: 
-        if conf in  mw.col.conf:
-            userOption[option]=mw.col.conf[conf]
-            del mw.col.conf[conf]
-    mw.addonManager.writeConfig(__name__,userOption)
-
-    
-addHook("profileLoaded",updateV1toV2)
 
 def onChange(config):
     if "prefix" not in config:
@@ -60,6 +51,6 @@ def onChange(config):
     else:
         suffix=config["suffix"]
     changeLaTeX(prefix=prefix, suffix=suffix)
-        
-        
+
+
 mw.addonManager.setConfigUpdatedAction(__name__,onChange)
