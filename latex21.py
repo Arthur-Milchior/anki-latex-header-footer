@@ -6,7 +6,7 @@ import aqt
 from aqt.models import Models
 from aqt.qt import *
 from aqt.utils import restoreGeom, saveGeom, tooltip, askUser
-
+from anki.lang import _
 
 def changeLaTeX(latexsvg, header, footer):
     for m in aqt.mw.col.models.all():
