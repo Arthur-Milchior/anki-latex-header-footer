@@ -26,43 +26,46 @@ from aqt.utils import getText, tooltip
 def test(s):
     return s and isinstance(s, basestring)
 
-def changeLaTeX(latexPre=None, latexPost = None):
+
+def changeLaTeX(latexPre=None, latexPost=None):
     models = list(mw.col.models.models.values())
     if not test(latexPre):
-        if  'latexPre' in mw.col.conf :
+        if 'latexPre' in mw.col.conf:
             latexPre = mw.col.conf['latexPre']
     if not test(latexPre):
         model = models[0]
         if 'latexPre' in model:
             latexPre = model['latexPre']
 
-    (latexPre,ret)=getText("LaTeX header",default=latexPre)
+    (latexPre, ret) = getText("LaTeX header", default=latexPre)
     if test(latexPre) and ret:
-        mw.col.conf['latexPre']= latexPre
+        mw.col.conf['latexPre'] = latexPre
         for model in models:
             model['latexPre'] = latexPre
 
-
     models = list(mw.col.models.models.values())
     if not test(latexPost):
-        if  'latexPost' in mw.col.conf :
+        if 'latexPost' in mw.col.conf:
             latexPost = mw.col.conf['latexPost']
     if not test(latexPost):
         model = models[0]
         if 'latexPost' in model:
             latexPost = model['latexPost']
 
-    (latexPost,ret_)=getText("LaTeX footer",default=latexPost)
+    (latexPost, ret_) = getText("LaTeX footer", default=latexPost)
     if test(latexPost) and ret_:
-        mw.col.conf['latexPost']= latexPost
+        mw.col.conf['latexPost'] = latexPost
         for model in models:
             model['latexPost'] = latexPost
 
     if ret or ret_:
         mw.col.flush()
 
+
 def launch():
-    changeLaTeX ()
+    changeLaTeX()
+
+
 action = QAction(aqt.mw)
 action.setText("Latex Head/foot")
 mw.form.menuTools.addAction(action)
