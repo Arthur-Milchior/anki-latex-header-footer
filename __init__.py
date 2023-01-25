@@ -16,7 +16,6 @@ from aqt.utils import askUser
 from aqt.gui_hooks import (
     models_advanced_will_show
 )
-from anki.hooks import wrap
 
 
 def changeLaTeX(latexsvg, header, footer):
@@ -42,8 +41,11 @@ def adjust_dialog(dialog):
                                     f.addWidget(apply_to_all)
 models_advanced_will_show.append(adjust_dialog)
 
+if not hasattr(Models, "_onAdvanced"):
+    Models._onAdvanced = Models.onAdvanced
 
 def onAdvanced(self):
+    Models._onAdvanced(self)
     global apply_to_all
     if apply_to_all.isChecked():
         if askUser("Write these values for the header/footer to ALL notetypes?"):
@@ -51,4 +53,4 @@ def onAdvanced(self):
             changeLaTeX(nt["latexsvg"],
                         nt["latexPre"], 
                         nt["latexPost"])
-Models.onAdvanced = wrap(Models.onAdvanced, onAdvanced)
+Models.onAdvanced = onAdvanced
